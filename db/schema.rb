@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117024346) do
+ActiveRecord::Schema.define(version: 20151117031542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,26 @@ ActiveRecord::Schema.define(version: 20151117024346) do
 
   add_index "muscle_groups", ["exercise_id"], name: "index_muscle_groups_on_exercise_id", using: :btree
 
+  create_table "personal_details", force: :cascade do |t|
+    t.string   "gender"
+    t.integer  "weight"
+    t.integer  "neck"
+    t.integer  "shoulders"
+    t.integer  "chest"
+    t.integer  "bicep"
+    t.integer  "waist"
+    t.integer  "hips"
+    t.integer  "thigh"
+    t.integer  "resting_heart_rate"
+    t.integer  "calf"
+    t.integer  "user_id"
+    t.date     "date"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "personal_details", ["user_id"], name: "index_personal_details_on_user_id", using: :btree
+
   create_table "schedules", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "created_at", null: false
@@ -116,6 +136,7 @@ ActiveRecord::Schema.define(version: 20151117024346) do
   add_foreign_key "goals", "users"
   add_foreign_key "initial_tests", "users"
   add_foreign_key "muscle_groups", "exercises"
+  add_foreign_key "personal_details", "users"
   add_foreign_key "schedules", "users"
   add_foreign_key "workout_windows", "schedules"
   add_foreign_key "workouts", "initial_tests"
