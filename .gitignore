@@ -11,3 +11,5 @@
 /log/*
 !/log/.keep
 /tmp
+config/config.yml
+public/system
