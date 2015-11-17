@@ -26,10 +26,8 @@ describe Api::V1::UsersController do
     end
 
     it "includes a user's goals" do
-      binding.pry
       expect(dashboard_response[:goals]).to respond_to(:size)
       expect(dashboard_response[:goals].first[:user_id]).to eq(@user.id)
     end
-
   end
 end

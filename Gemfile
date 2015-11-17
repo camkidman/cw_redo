@@ -52,3 +52,4 @@ end
 gem 'rails-api'
 gem 'active_model_serializers'
 gem 'responders'
+gem 'paperclip'
