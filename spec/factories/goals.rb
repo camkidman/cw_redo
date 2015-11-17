@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :goal do
-    user nil
+    user
+    text "Get Stronger"
   end
 
 end
