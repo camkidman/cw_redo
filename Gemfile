@@ -38,6 +38,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
   gem 'ffaker'
+  gem 'pry'
 end
 
 group :development do
@@ -50,3 +51,4 @@ end
 
 gem 'rails-api'
 gem 'active_model_serializers'
+gem 'responders'

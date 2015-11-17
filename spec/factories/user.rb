@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user do
-    name "Cam Kidman"
-    email "cam@cw.com"
+    name { FFaker::Name }
+    email { FFaker::Internet.email }
   end
 end
