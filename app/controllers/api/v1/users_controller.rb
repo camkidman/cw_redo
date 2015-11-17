@@ -15,12 +15,17 @@ class ::Api::V1::UsersController < ::Api::V1::ApiController
   end
 
   def update
-
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      render json: @user, status: 200, location: [:api, @user, :dashboard]
+    else
+      render json: @user.errors, status: 422
+    end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :progress_picture)
+    params.require(:user).permit(:id, :name, :email, :progress_picture)
   end
 end

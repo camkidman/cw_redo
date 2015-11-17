@@ -44,5 +44,28 @@ describe Api::V1::UsersController do
         expect(user_response[:user][:email]).to eq(@user_attributes[:email])
       end
     end
+
+    context "with invalid attributes" do
+      it "should return an errors hash" do
+
+      end
+
+      it "should return a 422 response code" do
+
+      end
+    end
+  end
+
+  describe "PUT/PATCH #update" do
+    context "with valid attributes" do
+      before(:each) do
+        @user = FactoryGirl.create(:user)
+        patch :update, { id: @user.id, user: { email: "beccashot@awwyeah.com" } }, format: :json
+      end
+      it "should update the user" do
+        user_response = JSON.parse(response.body, symbolize_names: true)
+        expect(user_response[:user][:email]).to eq("beccashot@awwyeah.com")
+      end
+    end
   end
 end
