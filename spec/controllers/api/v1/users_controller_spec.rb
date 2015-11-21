@@ -45,15 +45,15 @@ describe Api::V1::UsersController do
       end
     end
 
-    context "with invalid attributes" do
-      it "should return an errors hash" do
-
-      end
-
-      it "should return a 422 response code" do
-
-      end
-    end
+#    context "with invalid attributes" do
+#      it "should return an errors hash" do
+#
+#      end
+#
+#      it "should return a 422 response code" do
+#
+#      end
+#    end
   end
 
   describe "PUT/PATCH #update" do

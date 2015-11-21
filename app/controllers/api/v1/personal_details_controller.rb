@@ -1,4 +1,6 @@
 class Api::V1::PersonalDetailsController < Api::V1::ApiController
+  respond_to :json
+
   def show
 
   end
