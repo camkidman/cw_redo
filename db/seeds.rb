@@ -15,6 +15,6 @@ end
 puts "Created default muscle groups"
 
 ["Get stronger", "Get faster", "Slim down", "Lose baby weight", "Bulk Up", "Tone up", "Get started"].each do |g|
-  Goal.find_or_create_by(name: g)
+  Goal.find_or_create_by(text: g)
 end
 
