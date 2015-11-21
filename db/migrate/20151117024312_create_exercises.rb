@@ -5,7 +5,7 @@ class CreateExercises < ActiveRecord::Migration
       t.string :youtube_url
       t.string :proper_form_text
       t.boolean :cardio
-      t.boolean :requires_gem
+      t.boolean :requires_gym
 
       t.timestamps null: false
     end

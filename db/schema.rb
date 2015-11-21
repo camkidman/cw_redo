@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117194928) do
+ActiveRecord::Schema.define(version: 20151121021243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,10 @@ ActiveRecord::Schema.define(version: 20151117194928) do
     t.integer  "workout_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "time"
+    t.integer  "reps"
+    t.integer  "sets"
+    t.integer  "weight"
   end
 
   add_index "exercise_details", ["exercise_id"], name: "index_exercise_details_on_exercise_id", using: :btree
@@ -45,7 +49,7 @@ ActiveRecord::Schema.define(version: 20151117194928) do
     t.string   "youtube_url"
     t.string   "proper_form_text"
     t.boolean  "cardio"
-    t.boolean  "requires_gem"
+    t.boolean  "requires_gym"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -113,6 +117,17 @@ ActiveRecord::Schema.define(version: 20151117194928) do
     t.integer  "progress_picture_file_size"
     t.datetime "progress_picture_updated_at"
   end
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "item_type",  null: false
+    t.integer  "item_id",    null: false
+    t.string   "event",      null: false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
   create_table "workout_windows", force: :cascade do |t|
     t.integer  "schedule_id"
