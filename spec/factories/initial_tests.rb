@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :initial_test do
-    user nil
+    user
+    complete false
   end
 
 end

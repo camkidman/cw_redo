@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :users, :only => [:create, :update] do
         resources :personal_details, :only => [:show, :create]
         get :dashboard
+        resource :initial_test, :only => [:show, :update]
         resources :exercise_details, :only => [:index, :create, :show]
       end
     end
