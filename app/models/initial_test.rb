@@ -21,7 +21,7 @@ class InitialTest < ActiveRecord::Base
 private
 
   def create_initial_workout
-    workout = create_workout
+    workout = create_workout(user_id: user_id)
     build_initial_exercises(workout)
   end
 
@@ -30,6 +30,7 @@ private
       { name: "pushups", youtube_url: "https://www.youtube.com", proper_form_text: "up and down" },
       { name: "one_mile_run", youtube_url: "https://www.youtube.com", proper_form_text: "run fast" },
       { name: "body_weight_squats", youtube_url: "https://www.youtube.com", proper_form_text: "up and down, actually" },
-      { name: "situps", youtube_url: "https://www.youtube.com", proper_form_text: "up and down, again" }]) #this makes me feel like a javascript dev
+      { name: "situps", youtube_url: "https://www.youtube.com", proper_form_text: "up and down, again" }
+    ])
   end
 end

@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
                      styles: { medium: "300x300>" }, default_url: "/images/:style/missing.png"
 
+  after_create :create_initial_test
+
   validates_attachment_content_type :progress_picture, content_type: /\Aimage\/.*\Z/
 
   def s3_credentials
