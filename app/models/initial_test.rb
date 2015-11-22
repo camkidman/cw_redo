@@ -3,7 +3,7 @@ class InitialTest < ActiveRecord::Base
   # Associations
   #
   belongs_to :user
-  has_many :exercise_details
+  has_many :exercise_details, through: :exercises
   has_many :exercises, through: :workout
   has_one :workout
 
