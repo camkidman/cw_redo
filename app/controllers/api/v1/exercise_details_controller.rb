@@ -18,6 +18,15 @@ class ::Api::V1::ExerciseDetailsController < ::Api::V1::ApiController
     render json: ExerciseDetail.find(params[:id]), resposne: 200
   end
 
+  def update
+    @exercise_details = params[:exercise_details]
+    @exercise_details.map do |exercise_detail|
+      if exercise_detail.update_attributes(exercise_detail_params)
+        # I should be doing an array of entire objects and updating each of them
+      end
+    end
+  end
+
 private
 
   def exercise_detail_params

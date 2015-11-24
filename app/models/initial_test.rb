@@ -7,6 +7,8 @@ class InitialTest < ActiveRecord::Base
   has_many :exercises, through: :workout
   has_one :workout
 
+  accepts_nested_attributes_for :exercise_details
+
   ##
   # Validations
   #
