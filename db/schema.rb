@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151121040916) do
+ActiveRecord::Schema.define(version: 20151127231303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,10 +27,8 @@ ActiveRecord::Schema.define(version: 20151121040916) do
   add_index "body_parts", ["muscle_group_id"], name: "index_body_parts_on_muscle_group_id", using: :btree
 
   create_table "exercise_details", force: :cascade do |t|
-    t.integer  "exercise_id"
     t.integer  "user_id"
     t.integer  "initial_test_id"
-    t.integer  "workout_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "time"
@@ -39,10 +37,8 @@ ActiveRecord::Schema.define(version: 20151121040916) do
     t.integer  "weight"
   end
 
-  add_index "exercise_details", ["exercise_id"], name: "index_exercise_details_on_exercise_id", using: :btree
   add_index "exercise_details", ["initial_test_id"], name: "index_exercise_details_on_initial_test_id", using: :btree
   add_index "exercise_details", ["user_id"], name: "index_exercise_details_on_user_id", using: :btree
-  add_index "exercise_details", ["workout_id"], name: "index_exercise_details_on_workout_id", using: :btree
 
   create_table "exercises", force: :cascade do |t|
     t.string   "name"
@@ -50,9 +46,14 @@ ActiveRecord::Schema.define(version: 20151121040916) do
     t.string   "proper_form_text"
     t.boolean  "cardio"
     t.boolean  "requires_gym"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.integer  "workout_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "exercise_detail_id"
   end
+
+  add_index "exercises", ["exercise_detail_id"], name: "index_exercises_on_exercise_detail_id", using: :btree
+  add_index "exercises", ["workout_id"], name: "index_exercises_on_workout_id", using: :btree
 
   create_table "goals", force: :cascade do |t|
     t.integer  "user_id"
@@ -151,10 +152,10 @@ ActiveRecord::Schema.define(version: 20151121040916) do
 
   add_foreign_key "body_parts", "exercises"
   add_foreign_key "body_parts", "muscle_groups"
-  add_foreign_key "exercise_details", "exercises"
   add_foreign_key "exercise_details", "initial_tests"
   add_foreign_key "exercise_details", "users"
-  add_foreign_key "exercise_details", "workouts"
+  add_foreign_key "exercises", "exercise_details"
+  add_foreign_key "exercises", "workouts"
   add_foreign_key "goals", "users"
   add_foreign_key "initial_tests", "users"
   add_foreign_key "muscle_groups", "exercises"

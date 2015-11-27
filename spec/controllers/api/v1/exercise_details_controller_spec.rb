@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'pry'
 
 describe Api::V1::ExerciseDetailsController do
   describe "POST #create" do
@@ -58,5 +59,17 @@ describe Api::V1::ExerciseDetailsController do
       expect(exercise_details_response[:weight]).to eq(@exercise_detail.weight)
     end
 
+  end
+
+  describe "PATCH/PUT #update" do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      @exercise_details = @user.initial_test.exercise_details
+      binding.pry
+    end
+
+    it "should return a 201 response code" do
+      expect(response.status).to eq(201)
+    end
   end
 end
