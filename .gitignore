@@ -13,3 +13,4 @@
 /tmp
 config/config.yml
 public/system
+lib/files/workouts*

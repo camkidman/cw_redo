@@ -6,4 +6,26 @@ class Exercise < ActiveRecord::Base
   belongs_to :exercise_details
 
   accepts_nested_attributes_for :exercise_details
+
+  def primary_muscle_group
+    muscle_groups.max_by(&:weighted_score)
+  end
+
+  def similar_exercises
+    Exercise.joins(:muscle_groups).where('muscle_groups.weighted_score' => weighted_score_difference)
+  end
+
+  private
+
+  def weighted_score_lower_bound
+    primary_muscle_group.weighted_score - 15
+  end
+
+  def weighted_score_upper_bound
+    primary_muscle_group.weighted_score + 15
+  end
+
+  def weighted_score_difference
+    weighted_score_lower_bound..weighted_score_upper_bound
+  end
 end

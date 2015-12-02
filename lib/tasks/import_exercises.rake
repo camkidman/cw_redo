@@ -7,11 +7,6 @@ task :import_exercises do
     for i in 0..3 do
       MuscleGroup.create(:name => muscle_attributes["muscle_group_#{i}".to_sym], :weighted_score => muscle_attributes["weighted_score_#{i}".to_sym], :exercise_id => ex.id)
     end
-#    # still need to modify the keys so they work
-#    muscle_attributes.to_a.each_slice(2) { |attribute_and_value_array| 
-#      almost_complete_muscle_group_hash = Hash[attribute_and_value_array.map {|key, value| [key, value] }].merge(exercise_id: ex.id)
-#      
-#    
-#    }
+    # that'll do for v0
   end
 end
