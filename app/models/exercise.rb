@@ -12,7 +12,7 @@ class Exercise < ActiveRecord::Base
   end
 
   def similar_exercises
-    Exercise.joins(:muscle_groups).where('muscle_groups.weighted_score' => weighted_score_difference)
+    MuscleGroup.where(name: primary_muscle_group.name).where(weighted_score: weighted_score_difference).map(&:exercise)
   end
 
   private
