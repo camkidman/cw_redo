@@ -5,16 +5,21 @@ describe Api::V1::WorkoutsController do
     context "when a workout is found" do
       before(:each) do
         @workout = FactoryGirl.create(:workout_with_exercises)
-        binding.pry
         get :show, { user_id: @workout.user.id, id: @workout.id }, format: :json
       end
+
+      let(:workout_response) { JSON.parse(response.body, symbolize_names: true) }
 
       it "should return a 200 response code" do
         expect(response.status).to eq(200)
       end
 
-      it "should return the workout and exercises" do
-        # gotta get exercises to be returned here
+      it "should return the workout" do
+        expect(workout_response[:workout]).to be_present
+      end
+
+      it "should return exercises" do
+        expect(workout_response[:workout][:exercises].size).to eq(3)
       end
     end
   end
