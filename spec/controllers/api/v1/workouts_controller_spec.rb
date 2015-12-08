@@ -4,7 +4,7 @@ describe Api::V1::WorkoutsController do
   describe "GET #show" do
     context "when a workout is found" do
       before(:each) do
-        @workout = FactoryGirl.create(:workout)
+        @workout = FactoryGirl.create(:workout_with_exercises)
         binding.pry
         get :show, { user_id: @workout.user.id, id: @workout.id }, format: :json
       end
