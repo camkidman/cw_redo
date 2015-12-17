@@ -23,5 +23,9 @@ describe Api::V1::WorkoutsController do
       end
     end
   end
+
+  describe "PATCH #update" do
+    context "with exercises that have valid attributes"
+  end
 end
 

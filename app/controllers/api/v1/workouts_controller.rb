@@ -4,9 +4,27 @@ class ::Api::V1::WorkoutsController < ::Api::V1::ApiController
     render json: @workout, status: 200
   end
 
+  ####
+  # Example request
+  # { "user_id":1,
+  #   "workout": {
+  #     "exercises": [
+  #       "id":1,
+  #       "name":"pushups",
+  #       "youtube_url":"https://www.youtube.com/asdf",
+  #       "proper_form_text":"This is how you do a pushup",
+  #       "cardio":false,
+  #       "requires_gym":false
+  #     ]}
+  # }
+  #
+  #
+  #
+  #
+
   def update
     @workout = Workout.find(params[:id])
-    @exercises =
+  #  @exercises =
   end
 
 private
