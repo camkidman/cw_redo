@@ -9,6 +9,10 @@ Rails.application.routes.draw do
         get :dashboard
         resource :initial_test, :only => [:show, :update]
         resources :exercise_details, :only => [:index, :create, :show]
+        resources :workouts, :only => [:show, :index, :update]
+        resources :goals, :only => [:index]
+        resource :goals, :only => [:update]
+        resource :schedule, :only => [:update]
       end
     end
   end

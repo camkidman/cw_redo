@@ -1,7 +1,5 @@
 FactoryGirl.define do
   factory :exercise_detail do
-    initial_test nil
-    workout nil
     time 100
     reps 12
     sets 2

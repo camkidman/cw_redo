@@ -1,11 +1,11 @@
 class Exercise < ActiveRecord::Base
   has_many :muscle_groups
   has_many :body_parts, through: :muscle_groups
-  has_many :workouts, through: :exercise_details
   belongs_to :workout
-  belongs_to :exercise_details
+  belongs_to :exercise_detail
 
-  accepts_nested_attributes_for :exercise_details
+  accepts_nested_attributes_for :exercise_detail
+  after_create :create_exercise_detail
 
   def primary_muscle_group
     muscle_groups.max_by(&:weighted_score)
