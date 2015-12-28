@@ -40,6 +40,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'pry'
   gem 'awesome_print'
+  gem "timecop"
 end
 
 group :development do

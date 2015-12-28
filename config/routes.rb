@@ -12,6 +12,7 @@ Rails.application.routes.draw do
         resources :workouts, :only => [:show, :index, :update]
         resources :goals, :only => [:index]
         resource :goals, :only => [:update]
+        resource :schedule, :only => [:update]
       end
     end
   end

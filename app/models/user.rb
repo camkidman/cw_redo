@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
   after_create :create_initial_test
   after_create :create_initial_goals
+  after_create :create_schedule
 
   validates_attachment_content_type :progress_picture, content_type: /\Aimage\/.*\Z/
 
