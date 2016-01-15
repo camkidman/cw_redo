@@ -1,6 +1,5 @@
 require "application_responder"
 class ::Api::V1::ApiController < ActionController::API
-  protect_from_forgery with: :null_session
   self.responder = ApplicationResponder
   respond_to :json
   include ActionController::Serialization

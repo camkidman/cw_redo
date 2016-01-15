@@ -1,7 +1,7 @@
 require 'api_constraints'
 
 Rails.application.routes.draw do
-  namespace :api, defaults: { format: :json }, constraints: { subdomain: 'api' }, path: '/' do
+  namespace :api, defaults: { format: :json }, path: '/' do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :exercises, :only => [:create, :show]
       resources :users, :only => [:create, :update] do
@@ -18,3 +18,4 @@ Rails.application.routes.draw do
     end
   end
 end
+#constraints: { subdomain: 'api' }
