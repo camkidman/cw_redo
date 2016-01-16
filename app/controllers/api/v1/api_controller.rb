@@ -2,6 +2,7 @@ require "application_responder"
 class ::Api::V1::ApiController < ActionController::API
   self.responder = ApplicationResponder
   respond_to :json
+  binding.pry
   include ActionController::Serialization
   include DeviseTokenAuth::Concerns::SetUserByToken
   protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
