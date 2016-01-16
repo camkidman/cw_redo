@@ -34,21 +34,14 @@ module Cwredeux
         g.javascripts = false
         g.helper = false
       end
-  config.middleware.insert_before 0, "Rack::Cors", :debug => true, :logger => (-> { Rails.logger }) do
-       allow do
-         origins '*'
-
-         resource '/cors',
-           :headers => :any,
-           :methods => [:post],
-           :credentials => true,
-           :max_age => 0
-
-         resource '*',
-           :headers => :any,
-           :methods => [:get, :post, :delete, :put, :patch, :options, :head],
-           :max_age => 0
-       end
-     end
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+          :headers => :any,
+          :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+          :methods => [:get, :post, :options, :delete, :put]
+      end
+    end
 end
 end
