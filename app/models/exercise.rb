@@ -5,7 +5,7 @@ class Exercise < ActiveRecord::Base
   belongs_to :exercise_detail
 
   accepts_nested_attributes_for :exercise_detail
-  after_create :create_exercise_detail
+  before_create :create_exercise_detail
 
   def primary_muscle_group
     muscle_groups.max_by(&:weighted_score)

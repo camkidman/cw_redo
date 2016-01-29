@@ -14,6 +14,7 @@ class InitialTest < ActiveRecord::Base
   # Callbacks
   #
   after_create :create_initial_workouts
+#  after_save :check_if_complete
 
   has_paper_trail
 
@@ -25,6 +26,10 @@ private
 #    second_workout = workouts.create(user_id: user_id)
 #    build_second_workout_exercises(second_workout)
   end
+
+#  def check_if_complete
+#    if initial_test.
+#  end
 
   def build_first_workout_exercises(workout)
     workout.exercises.create([

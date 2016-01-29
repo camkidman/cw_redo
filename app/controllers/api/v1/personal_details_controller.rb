@@ -38,6 +38,6 @@ class Api::V1::PersonalDetailsController < Api::V1::ApiController
   private
 
   def personal_detail_params
-    params.require(:personal_detail).permit(:gender, :weight, :neck, :shoulders, :chest, :bicep, :waiste, :hips, :thigh, :resting_heart_rate, :calf, :date, :user_id)
+    params.require(:personal_detail).permit(:gender, :weight, :neck, :shoulders, :chest, :bicep, :waist, :hips, :thigh, :resting_heart_rate, :calf, :date, :user_id)
   end
 end
