@@ -14,7 +14,7 @@ class InitialTest < ActiveRecord::Base
   # Callbacks
   #
   after_create :create_initial_workouts
-  after_save :check_if_complete
+  after_update :check_if_complete
 
   has_paper_trail
 
@@ -28,7 +28,7 @@ private
   end
 
   def check_if_complete
-    return if workouts.collect(&:exercise_details).first.any? { |ed| ed.attributes.any? {|attr, value| value.nil?} } #todo feb6th, need to clean up initial_test_id, I think
+    return unless workouts.all? { |workout| !!workout.mark_complete_if_so! }
     ::WorkoutGenerator.generate_workouts(self)
   end
 

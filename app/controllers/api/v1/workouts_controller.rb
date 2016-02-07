@@ -33,6 +33,7 @@ class ::Api::V1::WorkoutsController < ::Api::V1::ApiController
   def update
     @workout = Workout.find(params[:id])
     if @workout.update_attributes(workout_params)
+      @workout.mark_complete_if_so!
       render :json => @workout, :status => 200
     else
       render :json => { errors: @workout.errors }, :status => 422

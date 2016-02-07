@@ -5,4 +5,7 @@ class ExerciseDetail < ActiveRecord::Base
   has_many :exercises
   has_many :workouts, :through => :exercises
 
+  def exercise_complete?
+    (reps.present? && sets.present?) || time.present?
+  end
 end

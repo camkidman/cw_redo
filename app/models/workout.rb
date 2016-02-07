@@ -7,7 +7,7 @@ class Workout < ActiveRecord::Base
   accepts_nested_attributes_for :exercise_details
 
   def mark_complete_if_so!
-    return unless exercise_details.all? { |ed| (ed.reps.present? && ed.sets.present?) || ed.time.present? }
-    update_attribute :complete, true
+    return unless exercise_details.all? { |ed| ed.exercise_complete? }
+    self.update_attribute :complete, true
   end
 end
