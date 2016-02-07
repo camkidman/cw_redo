@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151231200857) do
+ActiveRecord::Schema.define(version: 20160207035217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,12 @@ ActiveRecord::Schema.define(version: 20151231200857) do
 
   add_index "exercise_details", ["initial_test_id"], name: "index_exercise_details_on_initial_test_id", using: :btree
   add_index "exercise_details", ["user_id"], name: "index_exercise_details_on_user_id", using: :btree
+
+  create_table "exercise_references", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "exercises", force: :cascade do |t|
     t.string   "name"
@@ -77,13 +83,15 @@ ActiveRecord::Schema.define(version: 20151231200857) do
 
   create_table "muscle_groups", force: :cascade do |t|
     t.integer  "exercise_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.string   "name"
     t.integer  "weighted_score"
+    t.integer  "exercise_reference_id"
   end
 
   add_index "muscle_groups", ["exercise_id"], name: "index_muscle_groups_on_exercise_id", using: :btree
+  add_index "muscle_groups", ["exercise_reference_id"], name: "index_muscle_groups_on_exercise_reference_id", using: :btree
 
   create_table "personal_details", force: :cascade do |t|
     t.string   "gender"
@@ -172,6 +180,7 @@ ActiveRecord::Schema.define(version: 20151231200857) do
     t.integer  "initial_test_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.boolean  "complete"
   end
 
   add_index "workouts", ["initial_test_id"], name: "index_workouts_on_initial_test_id", using: :btree
@@ -185,6 +194,7 @@ ActiveRecord::Schema.define(version: 20151231200857) do
   add_foreign_key "exercises", "workouts"
   add_foreign_key "goals", "users"
   add_foreign_key "initial_tests", "users"
+  add_foreign_key "muscle_groups", "exercise_references"
   add_foreign_key "muscle_groups", "exercises"
   add_foreign_key "personal_details", "users"
   add_foreign_key "schedules", "users"

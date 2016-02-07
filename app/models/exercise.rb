@@ -6,9 +6,10 @@ class Exercise < ActiveRecord::Base
 
   accepts_nested_attributes_for :exercise_detail
   before_create :create_exercise_detail
+  before_create :check_for_exercise_reference
 
   def primary_muscle_group
-    muscle_groups.max_by(&:weighted_score)
+    muscle_groups.max_by { |muscle_group| muscle_group.weighted_score.to_f }
   end
 
   def similar_exercises
@@ -16,6 +17,12 @@ class Exercise < ActiveRecord::Base
   end
 
   private
+
+  def check_for_exercise_reference
+    if exercise_reference = ExerciseReference.where(:name => name.upcase).first
+      self.muscle_groups = exercise_reference.muscle_groups
+    end
+  end
 
   def weighted_score_lower_bound
     primary_muscle_group.weighted_score - 15
