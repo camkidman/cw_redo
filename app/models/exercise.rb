@@ -1,10 +1,8 @@
 class Exercise < ActiveRecord::Base
   has_many :muscle_groups
   has_many :body_parts, through: :muscle_groups
-  belongs_to :workout
-  belongs_to :exercise_detail
+  has_many :exercise_details
 
-  accepts_nested_attributes_for :exercise_detail
   before_create :create_exercise_detail
   before_create :check_for_exercise_reference
 

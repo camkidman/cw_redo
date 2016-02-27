@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20160207035217) do
   create_table "exercise_details", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "initial_test_id"
+    t.integer  "workout_id"
+    t.integer  "exercise_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "time"
@@ -37,8 +39,10 @@ ActiveRecord::Schema.define(version: 20160207035217) do
     t.integer  "weight"
   end
 
+  add_index "exercise_details", ["exercise_id"], name: "index_exercise_details_on_exercise_id", using: :btree
   add_index "exercise_details", ["initial_test_id"], name: "index_exercise_details_on_initial_test_id", using: :btree
   add_index "exercise_details", ["user_id"], name: "index_exercise_details_on_user_id", using: :btree
+  add_index "exercise_details", ["workout_id"], name: "index_exercise_details_on_workout_id", using: :btree
 
   create_table "exercise_references", force: :cascade do |t|
     t.string   "name"
@@ -52,14 +56,12 @@ ActiveRecord::Schema.define(version: 20160207035217) do
     t.string   "proper_form_text"
     t.boolean  "cardio"
     t.boolean  "requires_gym"
-    t.integer  "workout_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.integer  "exercise_detail_id"
   end
 
   add_index "exercises", ["exercise_detail_id"], name: "index_exercises_on_exercise_detail_id", using: :btree
-  add_index "exercises", ["workout_id"], name: "index_exercises_on_workout_id", using: :btree
 
   create_table "goals", force: :cascade do |t|
     t.integer  "user_id"
@@ -188,10 +190,11 @@ ActiveRecord::Schema.define(version: 20160207035217) do
 
   add_foreign_key "body_parts", "exercises"
   add_foreign_key "body_parts", "muscle_groups"
+  add_foreign_key "exercise_details", "exercises"
   add_foreign_key "exercise_details", "initial_tests"
   add_foreign_key "exercise_details", "users"
+  add_foreign_key "exercise_details", "workouts"
   add_foreign_key "exercises", "exercise_details"
-  add_foreign_key "exercises", "workouts"
   add_foreign_key "goals", "users"
   add_foreign_key "initial_tests", "users"
   add_foreign_key "muscle_groups", "exercise_references"

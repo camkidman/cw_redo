@@ -6,7 +6,6 @@ class CreateExercises < ActiveRecord::Migration
       t.string :proper_form_text
       t.boolean :cardio
       t.boolean :requires_gym
-      t.references :workout, index: true, foreign_key: true
 
       t.timestamps null: false
     end
