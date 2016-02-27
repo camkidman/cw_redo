@@ -14,7 +14,7 @@ class InitialTest < ActiveRecord::Base
   # Callbacks
   #
   after_create :create_initial_workouts
-  after_update :check_if_complete
+#  after_update :check_if_complete
 
   has_paper_trail
 
