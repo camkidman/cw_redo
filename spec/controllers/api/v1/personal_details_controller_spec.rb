@@ -13,7 +13,7 @@ describe ::Api::V1::PersonalDetailsController do
 
       it "should create a personal_detail" do
         personal_detail_response = JSON.parse(response.body, symbolize_names: true)
-        expect(personal_detail_response[:weight]).to eq(@personal_detail_attributes[:weight])
+        expect(personal_detail_response[:personal_detail][:weight]).to eq(@personal_detail_attributes[:weight])
         expect(response.status).to eq(201)
       end
     end

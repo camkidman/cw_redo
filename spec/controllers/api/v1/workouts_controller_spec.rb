@@ -4,7 +4,7 @@ describe Api::V1::WorkoutsController do
   describe "GET #show" do
     context "when a workout is found" do
       before(:each) do
-        @workout = FactoryGirl.create(:workout_with_exercises)
+        @workout = FactoryGirl.create(:workout_with_exercise_details)
         get :show, { user_id: @workout.user.id, id: @workout.id }, format: :json
       end
 
@@ -18,8 +18,8 @@ describe Api::V1::WorkoutsController do
         expect(workout_response[:workout]).to be_present
       end
 
-      it "should return exercises" do
-        expect(workout_response[:workout][:exercises].size).to eq(3)
+      it "should return exercise_details" do
+        expect(workout_response[:workout][:exercise_details].size).to eq(3)
       end
     end
   end
@@ -27,7 +27,7 @@ describe Api::V1::WorkoutsController do
   describe "PATCH #update" do
     context "with exercise details that have valid attributes" do
       before(:each) do
-        @workout = FactoryGirl.create(:workout_with_exercises)
+        @workout = FactoryGirl.create(:workout_with_exercise_details)
         @workout.exercise_details.first.reps = 1000
         workout_attributes = @workout.attributes
         workout_attributes["exercise_details_attributes"] = @workout.exercise_details.map { |ed| ed.attributes }

@@ -33,11 +33,11 @@ private
   end
 
   def build_first_workout_exercises(workout)
-    workout.exercises.create([
-      { name: "pushups", youtube_url: "https://www.youtube.com/watch?v=zF0jbubK_jU", proper_form_text: "up and down" },
-      { name: "one mile run", youtube_url: "https://www.youtube.com/watch?v=wRkeBVMQSgg", proper_form_text: "run fast" },
-      { name: "body weight squats", youtube_url: "https://www.youtube.com/watch?v=p3g4wAsu0R4", proper_form_text: "up and down, actually" },
-      { name: "situps", youtube_url: "https://www.youtube.com/watch?v=jDwoBqPH0jk", proper_form_text: "up and down, again" }
+    workout.exercise_details.create([
+      {exercise: Exercise.first_or_create(name: "pushups", youtube_url: "https://www.youtube.com/watch?v=zF0jbubK_jU", proper_form_text: "up and down")},
+      {exercise: Exercise.first_or_create(name: "one mile run", youtube_url: "https://www.youtube.com/watch?v=wRkeBVMQSgg", proper_form_text: "run fast")},
+      {exercise: Exercise.first_or_create(name: "body weight squats", youtube_url: "https://www.youtube.com/watch?v=p3g4wAsu0R4", proper_form_text: "up and down, actually")},
+      {exercise: Exercise.first_or_create(name: "situps", youtube_url: "https://www.youtube.com/watch?v=jDwoBqPH0jk", proper_form_text: "up and down, again")}
     ])
   end
 end

@@ -10,7 +10,7 @@ describe Api::V1::ExercisesController do
 
       it "should return the created exercise" do
         exercise_response = JSON.parse(response.body, symbolize_names: true)
-        expect(exercise_response[:name]).to eq(@exercise_attributes[:name])
+        expect(exercise_response[:exercise][:name]).to eq(@exercise_attributes[:name])
       end
 
       it "should respond with 201" do
@@ -31,7 +31,7 @@ describe Api::V1::ExercisesController do
 
     it "should contain the exercise searched for" do
       exercise_response = JSON.parse(response.body, symbolize_names: true)
-      expect(exercise_response[:name]).to eq(@exercise.name)
+      expect(exercise_response[:exercise][:name]).to eq(@exercise.name)
     end
   end
 end

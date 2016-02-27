@@ -3,7 +3,6 @@ class Exercise < ActiveRecord::Base
   has_many :body_parts, through: :muscle_groups
   has_many :exercise_details
 
-  before_create :create_exercise_detail
   before_create :check_for_exercise_reference
 
   def primary_muscle_group

@@ -22,8 +22,8 @@ describe Api::V1::InitialTestsController do
       expect(initial_test_response[:initial_test][:workouts]).to_not be_nil
     end
 
-    it "should return 4 exercises" do
-      expect(initial_test_response[:initial_test][:workouts].first[:exercises].size).to eq(4)
+    it "should return 4 exercise details" do
+      expect(initial_test_response[:initial_test][:workouts].first[:exercise_details].size).to eq(4)
     end
   end
 end

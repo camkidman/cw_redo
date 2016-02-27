@@ -5,7 +5,6 @@ FactoryGirl.define do
     proper_form_text "MyString"
     cardio false
     requires_gym false
-    exercise_detail
   end
 
 end

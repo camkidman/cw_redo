@@ -1,6 +1,6 @@
 class ::Api::V1::WorkoutsController < ::Api::V1::ApiController
   def show
-    @workout = Workout.includes(:exercises).find(params[:id])
+    @workout = Workout.includes(:exercise_details).find(params[:id])
     render json: @workout, status: 200
   end
 
@@ -15,14 +15,7 @@ class ::Api::V1::WorkoutsController < ::Api::V1::ApiController
   #       "sets":3,
   #       "reps":15,
   #       "weight":50
-  #     ],
-  #     "exercise": {
-  #       "name":"pushups",
-  #       "youtube_url":"https://www.youtube.com",
-  #       "proper_form_text":"This is how you do a pushup",
-  #       "cardio":false,
-  #       "requires_gym":false
-  #     }
+  #     ]
   #     }
   # }
   #
@@ -43,6 +36,6 @@ class ::Api::V1::WorkoutsController < ::Api::V1::ApiController
 private
 
   def workout_params
-    params.require(:workout).permit(:id, :user_id, exercises_attributes: [:id, :name, :youtube_url, :proper_form_text, :cardio, :requires_gym], exercise_details_attributes: [:id, :time, :reps, :sets, :weight])
+    params.require(:workout).permit(:id, :user_id, exercise_details_attributes: [:id, :time, :reps, :sets, :weight])
   end
 end
