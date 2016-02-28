@@ -4,7 +4,6 @@ module WorkoutGeneration
     def initialize(initial_test)
       @test_workouts = initial_test.workouts
       @user = initial_test.user
-
     end
 
     def self.generate_workouts(initial_test)
@@ -16,7 +15,10 @@ module WorkoutGeneration
       new_workout_set = workouts.map do |workout|
         workout.exercises.map(&:similar_exercises).map { |similar_exercise_array| similar_exercise_array.compact.sample }.uniq
       end
-      new_workout_set.each { |exercise_array| user.workouts.create(exercises: exercise_array) }
+      new_workout_set.each do |exercise_array|
+        Workout.create_with_exercises(user.id, exercise_array)
+        binding.pry
+      end
     end
   end
 end
