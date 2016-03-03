@@ -13,12 +13,17 @@ module WorkoutGeneration
     def generate_workouts
       workouts = test_workouts
       new_workout_set = workouts.map do |workout|
+        new_exercise_detail_array = []
+
         workout.exercise_details.each do |exercise_detail|
-          new_exercise_detail_array = []
           new_exercises = exercise_detail.exercise.similar_exercises.compact.sample(5).uniq
           new_exercise_detail_array << new_exercises.map { |new_exercise| ExerciseDetail.new(reps: (exercise_detail.reps * 0.2).ceil.to_i, sets: exercise_detail.sets, exercise: new_exercise) }
-          zipped_exercise_details = :zip.to_proc[*new_exercise_detail_array]
-          zipped_exercise_details.each { |zipped_exercise_detail_array| Workout.create(exercise_details: zipped_exercise_detail_array, user_id: user.id) }
+        end
+
+        mixed_exercise_details = :zip.to_proc[*new_exercise_detail_array]
+        mixed_exercise_details.each do |mixed_exercise_detail_array|
+          mixed_exercise_detail_array.compact!
+          Workout.create(user_id: user.id, exercise_details: mixed_exercise_detail_array)
         end
       end
     end
