@@ -52,7 +52,7 @@ group :development do
 end
 
 gem 'rails-api'
-gem 'active_model_serializers'
+gem 'active_model_serializers', "0.10.0.rc4"
 gem 'responders'
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'

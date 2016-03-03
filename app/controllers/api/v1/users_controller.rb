@@ -11,7 +11,7 @@ class ::Api::V1::UsersController < ::Api::V1::ApiController
 
   def dashboard
     @user = User.find(params[:user_id])
-    render json: { :user => @user, :personal_details => @user.personal_details, :goals => @user.goals, :workouts => @user.workouts.reject {|workout| workout.initial_test_id.present?}}
+    render json: @user, include: "workouts.exercise_details.exercise,goals,personal_details"
   end
 
   def update

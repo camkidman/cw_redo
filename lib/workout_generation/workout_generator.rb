@@ -17,7 +17,7 @@ module WorkoutGeneration
 
         workout.exercise_details.each do |exercise_detail|
           new_exercises = exercise_detail.exercise.similar_exercises.compact.sample(5).uniq
-          new_exercise_detail_array << new_exercises.map { |new_exercise| ExerciseDetail.new(reps: (exercise_detail.reps * 0.2).ceil.to_i, sets: exercise_detail.sets, exercise: new_exercise) }
+          new_exercise_detail_array << new_exercises.map { |new_exercise| ExerciseDetail.new(reps: (exercise_detail.reps + exercise_detail.reps * 0.2).ceil.to_i, sets: exercise_detail.sets, exercise: new_exercise) }
         end
 
         mixed_exercise_details = :zip.to_proc[*new_exercise_detail_array]

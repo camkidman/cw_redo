@@ -29,7 +29,7 @@ private
 
   def check_if_complete
     return unless workouts.all? { |workout| !!workout.mark_complete_if_so! }
-    ::WorkoutGenerator.generate_workouts(self)
+    ::WorkoutGeneration::WorkoutGenerator.generate_workouts(self)
   end
 
   def build_first_workout_exercises(workout)
