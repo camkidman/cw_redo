@@ -14,7 +14,7 @@ class InitialTest < ActiveRecord::Base
   # Callbacks
   #
   after_create :create_initial_workouts
-#  after_update :check_if_complete
+  after_save :check_if_complete
 
   has_paper_trail
 
@@ -28,7 +28,9 @@ private
   end
 
   def check_if_complete
+    binding.pry
     return unless workouts.all? { |workout| !!workout.mark_complete_if_so! }
+    binding.pry
     ::WorkoutGeneration::WorkoutGenerator.generate_workouts(self)
   end
 
